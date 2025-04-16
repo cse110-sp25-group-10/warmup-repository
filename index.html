@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Black Jack</title>
         <meta charset="UTF-8">
+        <link rel="icon" href="assets/icons/spade.ico">
+        <link rel="stylesheet" href="stylesheets/game.css">
     </head>
     <body>
-        
+        <header>
+            <h1>Team 10x Black Jack</h1>
+        </header>
+        <main>
+            <noscript>This game needs JavaScript to run!</noscript>
+            <script type="module" src="modules/CardComponent.js"></script>
+            <script src="scripts/game.js"></script>
+            <content-container>
+                <game-ui>
+                    <button id="resetBtn">Reset</button>
+                    <button id="shuffleBtn">Shuffle</button>
+                    <button id="drawBtn">Draw 1</button>
+                </game-ui>
+                <dealer-container></dealer-container>
+                <card-container></card-container>
+                <hand-container>
+                </hand-container>
+            </content-container>
+        </main>
     </body>
 </html>
