@@ -2,25 +2,33 @@ const SUITS = ["clubs", "spades", "hearts", "diamonds"];
 const deck = [];
 
 window.addEventListener("DOMContentLoaded", () => {
+    // Main references
     const cardContainer = document.querySelector("card-container");
     const handContainer = document.querySelector("hand-container");
     const shuffleBtn = document.querySelector("#shuffleBtn");
     const drawBtn = document.querySelector("#drawBtn");
     const resetBtn = document.querySelector("#resetBtn");
+    const drawAmountInput = document.querySelector("game-ui-container > input");
+    const drawXBtn = document.querySelector("#drawSomeBtn")
 
+    // initialize the game
     initGame();
 
+    // add functionality to buttons
     shuffleBtn.addEventListener("click", shuffleDeck);
     drawBtn.addEventListener("click", drawCard);
     resetBtn.addEventListener("click", initGame);
+    drawXBtn.addEventListener("click", drawCards);
 
     // returns a card component
     function createCard(suit, value) {
         const card = document.createElement("card-component");
         card.setAttribute("data-suit", suit);
         card.setAttribute("data-value", value);
+        card.setAttribute("class", "unflipped");
         return card;
     }
+
 
     /* Randomize array in-place using Durstenfeld shuffle algorithm */
     function shuffleArray(array) {
@@ -49,11 +57,26 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // draw a card
     function drawCard() {
-        let card = deck.pop();
-        handContainer.appendChild(createCard(card["suit"], card["value"]));
-        displayDeck();
+        deck.pop();
+        const card = cardContainer.lastChild;
+        handContainer.appendChild(card);
+        card.setAttribute("class", "flipped");
     }
 
+    // draw some amount of cards
+    function drawCards() {
+        const inputAmount = drawAmountInput.value*1;
+        console.log(inputAmount);
+        if (!isNaN(inputAmount)) {
+            if (inputAmount <= deck.length && inputAmount > 0) {
+                for (let i = 0; i < inputAmount; i++) {
+                    drawCard();
+                }
+            }
+        }
+    }
+
+    // initialize the game with an empty hand and a deck in new deck order.
     function initGame() {
         deck.length = 0;
         // initialize deck
