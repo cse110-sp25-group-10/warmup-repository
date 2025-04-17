@@ -1,6 +1,10 @@
 # Documentation
 ## Nav
+[HTML Structure](#html-structure)
+
 [Card Component Usage](#card-component-usage)
+
+[JavaScript Functions](#javascript-functions)
 
 ## HTML Structure
 `<content-container>`: Where the main game is contained 
@@ -30,3 +34,4 @@ target.appendChild(card); // target is the element you want to append the card t
 ```
 
 ## JavaScript Functions
+`createCard(suit, value)`: Returns a detatched Card Component HTMLElement.

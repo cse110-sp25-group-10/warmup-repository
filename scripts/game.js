@@ -1,7 +1,11 @@
-const SUITS = ["clubs", "spades", "hearts", "diamonds"];
-const deck = [];
-
 window.addEventListener("DOMContentLoaded", () => {
+    // Game variables
+    const SUITS = ["clubs", "spades", "hearts", "diamonds"];
+    const deck = [];
+    let playerAceCount = 0;
+    let playerScore = 0;
+
+
     // Main references
     const playerContainer = document.querySelector("player-container");
     const playerCount = document.querySelector("#playerCount");
@@ -30,13 +34,28 @@ window.addEventListener("DOMContentLoaded", () => {
         let cardJS = deck.pop();
         let cardValue = cardJS['value'];
         const card = createCard(cardJS['suit'], cardValue);
+
         if (cardValue > 10) {
-            cardValue = 10;
+            playerScore += 10;
+        } else if (cardValue === 1) {
+            playerScore += 11;
+            playerAceCount++;
+        } else {
+            playerScore += cardValue;
         }
-        playerCount.textContent = `${cardValue + Number(playerCount.textContent)}`;
         
+        if (playerScore > 21 && playerAceCount > 0) {
+            playerAceCount--;
+            playerScore -= 10; 
+        }
+
+        playerCount.textContent = `${playerScore}`;
         card.setAttribute("class", "flipped");
         playerContainer.appendChild(card);
+
+        if (playerScore > 21) {
+            initGame();
+        }
     }
 
 
@@ -57,6 +76,8 @@ window.addEventListener("DOMContentLoaded", () => {
     // initialize the game with an empty hand and a shuffled deck.
     function initGame() {
         deck.length = 0;
+        playerScore = 0;
+        playerAceCount = 0;
         // initialize deck
         for (let suit of SUITS) {
             for (let i = 1; i < 14; i++) {
