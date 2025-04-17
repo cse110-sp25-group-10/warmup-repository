@@ -4,18 +4,23 @@ window.addEventListener("DOMContentLoaded", () => {
     const deck = [];
     let playerAceCount = 0;
     let playerScore = 0;
+    let dealerScore = 0;
+    let dealerAceCount = 0;
 
 
     // Main references
     const playerContainer = document.querySelector("player-container");
     const playerCount = document.querySelector("#playerCount");
+    const dealerContainer = document.querySelector("dealer-container");
     const hitBtn = document.querySelector("#hitBtn");
+    const standBtn = document.querySelector("#standBtn");
 
     // Initialize the game
     initGame();
 
     // Add functionality to buttons
     hitBtn.addEventListener("click", hitCard);
+    standBtn.addEventListener("click", dealerTurn);
 
 
     /** || Card Functions */
@@ -29,7 +34,7 @@ window.addEventListener("DOMContentLoaded", () => {
         return card;
     }
 
-    // Hit a card
+    // Hit a card (players)
     function hitCard() {
         let cardJS = deck.pop();
         let cardValue = cardJS['value'];
@@ -58,6 +63,10 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // hit a card (dealer)
+    function hitDealer() {
+
+    }
 
     /** || Deck Functions */
 
@@ -89,7 +98,27 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         }
         shuffleArray(deck);
+        // removes all previous cards
         playerContainer.replaceChildren();
+        dealerContainer.replaceChildren();
+
+        // add 1 visible and non-visible card
+        for (let cards = 0; cards < 2; cards++) {
+            let cardJS = deck.pop();
+            let cardValue = cardJS['value'];
+            const card = createCard(cardJS['suit'], cardValue);
+            if (cards === 0) {
+                card.setAttribute("class", "flippedDealer");
+            } else {
+                card.setAttribute("class", "hidden");
+            }
+            dealerContainer.appendChild(card);
+        }
+    }
+
+    function dealerTurn() {
+        const hiddenCard = dealerContainer.lastChild;
+        hiddenCard.setAttribute("class", "revealed");
     }
 
 });
