@@ -15,16 +15,20 @@
             <script type="module" src="modules/CardComponent.js"></script>
             <script src="scripts/game.js"></script>
             <content-container>
-                <game-ui-container>
-                    <button id="resetBtn">Reset</button>
-                    <button id="shuffleBtn">Shuffle</button>
-                    <button id="drawBtn">Draw 1</button>
-                    <label for="drawAmount">Draw Amount:</label>
-                    <input id="drawAmount" name="drawAmount" maxlength="2">
-                    <button id="drawSomeBtn" type="submit">Draw X</button>
-                </game-ui-container>
-                <card-container></card-container>
-                <hand-container></hand-container>
+                <dealer-container></dealer-container>
+                <card-container>
+                    <dealt-container></dealt-container>
+                    <deck-container>
+                        <img src="assets/cards/back_dark.png">
+                    </deck-container>
+                </card-container>
+                <player-container>
+                    <hand-container></hand-container>
+                    <ui-container>
+                        <button id="hitBtn">Hit</button>
+                        <button id="standBtn">Stand</button>
+                    </ui-container>
+                </player-container>
             </content-container>
         </main>
     </body>

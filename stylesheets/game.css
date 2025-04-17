@@ -33,7 +33,7 @@ content-container {
     width: 100%;
     height: 90vh;
 
-    display: grid;
+    display: grid;  
     grid-template-rows: 1fr 1fr 4fr 1fr;
     overflow: hidden;
 }
@@ -42,27 +42,50 @@ card-container {
     height: 40vh;
     padding: 1rem;
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
     gap: 0.5rem;
 }
 
-game-ui-container {
+player-container {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    gap: 1rem;
+}
+
+ui-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
 }
 
 hand-container {
+    grid-column: 2;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 0.5rem;
     row-gap: 0.5rem;
+}
+
+dealt-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    grid-column: 2;
+}
+
+deck-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    grid-column: 3;
 }
 
 /** || Header */
@@ -119,11 +142,18 @@ card-component[class="flipped"] {
     }
 }
 
+/** || Deck Styling */
+deck-container > img {
+    width: 100px;
+    height: auto;
+}
+
+
 /** || UI Styling */
-game-ui-container > button {
+ui-container > button {
     width: 100px;
     height: 65px;
-
+    grid-column: 3;
     border: 1px solid var(--font-color);
     border-radius: 20px;
     font-family: "Lucky";
