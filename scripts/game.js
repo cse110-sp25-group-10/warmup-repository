@@ -3,8 +3,7 @@ const deck = [];
 
 window.addEventListener("DOMContentLoaded", () => {
     // Main references
-    const cardContainer = document.querySelector("card-container");
-    const handContainer = document.querySelector("hand-container");
+    const playerContainer = document.querySelector("player-container");
     const playerCount = document.querySelector("#playerCount");
     const hitBtn = document.querySelector("#hitBtn");
 
@@ -35,8 +34,9 @@ window.addEventListener("DOMContentLoaded", () => {
             cardValue = 10;
         }
         playerCount.textContent = `${cardValue + Number(playerCount.textContent)}`;
-        handContainer.appendChild(card);
+        
         card.setAttribute("class", "flipped");
+        playerContainer.appendChild(card);
     }
 
 
@@ -68,7 +68,7 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         }
         shuffleArray(deck);
-        handContainer.replaceChildren();
+        playerContainer.replaceChildren();
     }
 
 });

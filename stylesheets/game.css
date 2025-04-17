@@ -6,6 +6,7 @@
 :root {
     --surface-color: #338374;
     --font-color: #000;
+    --default-font-size: 25px;
 }
 
 /** || CSS Reset */
@@ -29,44 +30,25 @@ body {
     background-color: var(--surface-color);
 }
 
+main {
+    height: 100%;
+    display: flex;
+    align-content: center;
+}
+
 content-container {
     width: 100%;
-    height: 90vh;
+    height: 100vh;
 
     display: grid;  
-    grid-template-rows: 1fr 1fr 4fr 1fr;
+    grid-template-rows: 40% 20% 40%;
     overflow: hidden;
 }
 
-card-container {
-    height: 40vh;
-    padding: 1rem;
-
-    display: grid;
-    grid-template-columns: 10% 80% 10%;
-    gap: 0.5rem;
-}
-
 player-container {
-    display: grid;
-    grid-template-columns: 25% 50% 25%;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-
-ui-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-
-hand-container {
     width: 100%;
     height: 100%;
-    grid-column: 2;
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -76,21 +58,12 @@ hand-container {
     row-gap: 0.5rem;
 }
 
-dealt-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    grid-column: 2;
-}
-
-deck-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
+ui-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
     align-items: center;
-    grid-column: 3;
+    gap: 1rem;
 }
 
 /** || Header */
@@ -116,8 +89,7 @@ card-component {
     display: flex;
     flex-direction: column;
     perspective: 1000px;
-    position: relative;
-    transition: transform 0.8s;
+    position: relative; 
     transform-style: preserve-3d;
 }
 
@@ -144,17 +116,11 @@ card-component[class="flipped"] {
 
 @keyframes flip {
     0% {
-        transform: rotateY(180deg);
+        transform: rotateY(180deg) translateY(-100%);
     }
-    100% {
-        transform: rotateY(0);
+    100% {  
+        transform: rotateY(0) translateY(0%);
     }
-}
-
-/** || Deck Styling */
-deck-container > img {
-    width: 100px;
-    height: auto;
 }
 
 
@@ -162,31 +128,26 @@ deck-container > img {
 ui-container > button {
     width: 100px;
     height: 65px;
-    grid-column: 3;
     border: 1px solid var(--font-color);
     border-radius: 20px;
     font-family: "Lucky";
     font-size: 1rem;
 }
 
-game-ui-container > button:hover {
+ui-container > button:hover {
     background-color: #a8a8a8;
 }
 
-game-ui-container > label {
-    font-family: "Lucky";
-    font-size: 1rem;
-}
-
-game-ui-container > input {
-    height: 25px;
-    width: 100px;
-
-    font-family: "Lucky";
-    font-size: 1rem;
-}
-
-player-container > p {
-    font-size: 3rem;
+ui-container > p {
     text-align: center;
+    font-size: var(--default-font-size);
+    font-family: "Lucky";
+}
+
+#playerCount::before {
+    content: "Player Count: ";
+}
+
+#dealerCount::before {
+    content: "Dealer Count: ";
 }

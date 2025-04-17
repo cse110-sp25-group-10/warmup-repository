@@ -7,29 +7,19 @@
         <link rel="stylesheet" href="stylesheets/game.css">
     </head>
     <body>
-        <header>
-            <h1>Team 10x Black Jack</h1>
-        </header>
         <main>
             <noscript>This game needs JavaScript to run!</noscript>
             <script type="module" src="modules/CardComponent.js"></script>
             <script src="scripts/game.js"></script>
             <content-container>
                 <dealer-container></dealer-container>
-                <card-container>
-                    <dealt-container></dealt-container>
-                    <deck-container>
-                        <img src="assets/cards/back_dark.png">
-                    </deck-container>
-                </card-container>
-                <player-container>
-                    <p id="playerCount">0</p>
-                    <hand-container></hand-container>
-                    <ui-container>
+                <ui-container>
+                        <p id="playerCount">0</p>
                         <button id="hitBtn">Hit</button>
                         <button id="standBtn">Stand</button>
-                    </ui-container>
-                </player-container>
+                        <p id="dealerCount">0</p>
+                </ui-container>
+                <player-container></player-container>
             </content-container>
         </main>
     </body>
