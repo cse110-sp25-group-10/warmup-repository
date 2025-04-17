@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // Main references
     const cardContainer = document.querySelector("card-container");
     const handContainer = document.querySelector("hand-container");
+    const playerCount = document.querySelector("#playerCount");
     const hitBtn = document.querySelector("#hitBtn");
 
     // Initialize the game
@@ -28,7 +29,12 @@ window.addEventListener("DOMContentLoaded", () => {
     // Hit a card
     function hitCard() {
         let cardJS = deck.pop();
-        const card = createCard(cardJS['suit'], cardJS['value']);
+        let cardValue = cardJS['value'];
+        const card = createCard(cardJS['suit'], cardValue);
+        if (cardValue > 10) {
+            cardValue = 10;
+        }
+        playerCount.textContent = `${cardValue + Number(playerCount.textContent)}`;
         handContainer.appendChild(card);
         card.setAttribute("class", "flipped");
     }
