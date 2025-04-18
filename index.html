@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Black Jack</title>
     <meta charset="UTF-8">
-    <link rel="icon" href="assets/icons/spade.ico">
-    <link rel="stylesheet" href="stylesheets/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Game</title>
+    <link rel="stylesheet" href="game.css">
 </head>
 <body>
-    <main>
+    <div class="container">
         <h1>Blackjack</h1>
-        <div class="status" id="status">Welcome to Blackjack!</div>
-
-        <section class="table">
-            <div class="hand" id="dealer-area">
-                <h2>Dealer</h2>
-                <div class="card-row" id="dealer-cards"></div>
-                <p id="dealer-score">Score: ?</p>
-            </div>
-
-            <div class="hand" id="player-area">
-                <h2>Player</h2>
-                <div class="card-row" id="player-cards"></div>
-                <p id="player-score">Score: 0</p>
-            </div>
-        </section>
-
-        <div class="controls">
-            <button id="hit">Hit</button>
-            <button id="stand">Stand</button>
-            <button id="restart">Restart</button>
+        
+        <div class="game-status">
+            <div id="message"></div>
         </div>
+        
+        <div class="game-area">
+            <div class="player-area">
+                <h2>Your Hand: <span id="player-score">0</span></h2>
+                <div id="player-cards" class="cards"></div>
+            </div>
+            
+            <div class="dealer-area">
+                <h2>Dealer's Hand: <span id="dealer-score">0</span></h2>
+                <div id="dealer-cards" class="cards"></div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="deal-button">Deal</button>
+            <button id="hit-button" disabled>Hit</button>
+            <button id="stand-button" disabled>Stand</button>
+        </div>
+    </div>
 
-        <script type="module" src="modules/CardComponent.js"></script>
-        <script src="scripts/game.js"></script>
-    </main>
+    <script src="modules/CardComponent.js"></script>
+    <script src="scripts/game.js"></script>
 </body>
 </html>
