@@ -1,6 +1,6 @@
 class CardComponent {
-  constructor(suit, value) {
-    this.suit = suit;
-    this.value = value
+  constructor(cardNumber) {
+    this.cardNumber = cardNumber;
+    this.value = (this.cardNumber % 13) + 1;
   }
 }
