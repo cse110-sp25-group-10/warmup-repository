@@ -1,10 +1,97 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Black Jack</title>
-        <meta charset="UTF-8">
-    </head>
-    <body>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlackJack</title>
+    <link rel="stylesheet" href="./stylesheets/game.css">
+</head>
+
+<body>
+    <header>
+            <h1>Gambling with BlackJack</h1>
+    </header>
+
+    <main>
+        <section id="game-status">
+            <h2 id="message">Press 'Deal' to start</h2>
+        </section>
         
-    </body>
+        <section id="dealer-area">
+            <h2>Dealer: <span id="dealer-score">0</span></h2>
+            <div id="dealer-cards"></div>
+        </section>
+        
+        <section id="player-area">
+            <h2>Player: <span id="player-score">0</span></h2>
+            <div id="player-cards"></div>
+        </section>
+        
+        <section id="controls">
+            <button id="deal-button">Deal</button>
+            <button id="hit-button" disabled>Hit</button>
+            <button id="stand-button" disabled>Stand</button>
+        </section>
+    </main>
+        
+    <footer>
+        <p>Chip Count: $<span id="chips">1000</span></p>
+    </footer>
+        
+    <script src="./scripts/game.js"></script>
+
+</body>
 </html>
+
+<!---
+         Dealer Section  
+        <section id="dealer">
+            <h2>Dealer's Hand</h2>
+            <div id="dealer-cards">
+             Cards will go here 
+            </div>
+            <p id="dealer-score">Score: </p>
+        </section>
+
+         Player Section 
+        <section id="player">
+            <h2>Your Hand</h2>
+            <div id="player-cards">
+            </div>
+            <p id="player-score">Score: </p>
+        </section>
+
+        <div id="message">
+            <p>Game status will appear here...</p>
+        </div>
+
+        <div id="controls">
+            <button id="start-game">Start Game</button>
+            <button id="hit" disabled>Hit</button>
+            <button id="stand" disabled>Stand</button>
+            <button id="restart" disabled>Restart</button>
+        </div>
+    </main>
+    <script src="./scripts/game.js"></script>
+
+
+
+<div class="grad"></div>
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+    </div>
+    <div class="flip-card-back">
+      <h1>John Doe</h1> 
+      <p>Architect & Engineer</p> 
+      <p>We love that guy</p>
+    </div>
+  </div>
+</div>
+
+
+  
+</body>
+</html>
+
+-->
