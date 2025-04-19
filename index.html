@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Black Jack</title>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blackjack</title>
+  <link rel="stylesheet" href="style/card.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 10px;
+      min-height: 100vh;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #1a472a, #2a623d);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    black-jack {
+      width: 100%;
+      max-width: 1000px;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 5px;
+      }
+
+      h1 {
+        font-size: 2em;
+        margin: 5px 0;
+      }
+
+      black-jack {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <h1>♠️ Blackjack ♥️</h1>
+    <black-jack></black-jack>
+    <script type="module" src="components/blackjack.js"></script>
+</body>
+
 </html>
