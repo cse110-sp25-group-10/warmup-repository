@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Black Jack - Loreen's Version</title>
+        <title>Black Jack - Spongebob Edition</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="stylesheets/game.css">
     </head>
     <body>
         <header>
             <h1>Game of Black Jack!</h1>
         </header>
 
-        <main>
-            <h2>Cards:</h2>
-            <!--div is a container that js can find and add stuff to it-->
-            <div id="card-div"></div>
+        <!--Dealer is squidward :)-->
+        <img src="squidward.png" id="squidward-img">
 
-            <!-- shuffle button here -->
-             <button id="shuffle">Shuffle!</button>
+        <main id="game-box">
+            <button id="hit" class="image-button">HIT</button>
+            <button id="stand" class="image-button">STAND</button>
+            <button id="dd" class="image-button">DOUBLE-DOWN</button>
+            <button id="split" class="image-button">SPLIT</button>
+            <button id="surrender" class="image-button">SURRENDER</button>
+            <section id="inner-box">
+                <section id="dealer">
+                    <h3>DEALER</h3>
+                </section>
+                <section id="player1">
+                    <h3>PLAYER 1</h3>
+                </section>
+                <section id="player2">
+                    <h3>PLAYER 2</h3>
+                </section>
+                <!--div is a container that js can find and add stuff to it-->
+                <!--<div id="card-div"></div>-->
+
+                <!-- shuffle button here -->
+                <!--<button id="shuffle">Shuffle!</button>-->
+            </section>
         </main>
         
         <!--load js after container is made-->

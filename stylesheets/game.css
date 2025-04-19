@@ -1,1 +1,130 @@
 /* Used for design/looks */
+
+/* Centers everything in the body */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /*background-color: #a3cde7;*/
+    background-image: url('spongebobBackground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}    
+
+/* Squidward movements so he dances */
+@keyframes dance {
+    0% {
+        transform: rotate(0deg) 
+    }
+    25% {
+        transform: rotate(10deg) 
+    }
+    50% {
+        transform: rotate(-10deg)
+    }
+    75% {
+        transform: rotate(10deg) 
+    }
+    100% {
+        transform: rotate(0deg)
+    }
+}
+
+/* Squidward dealer */
+#squidward-img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 450px;
+    animation: dance 0.5s ease-in-out infinite;
+}  
+  
+/* Creating the game box */
+#game-box {
+    position: relative;
+    width: 70%;
+    height: 80%;
+    border: 5px dotted #ffffff;
+}
+
+/* boxception */
+#inner-box {
+    position: absolute;
+    bottom: 0;
+    width: 99%;
+    height: 75%;
+    border: 5px dotted #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* krabby buttons */
+.image-button {
+    background-image: url('krabby.png');
+    background-size: cover; 
+    background-color: transparent;
+    width: 100px; 
+    height: 100px; 
+    border: none; 
+    cursor: pointer; /* Changes the cursor to a pointer when hovered */
+    color: white;
+    font-family: 'Comic Sans MS';
+    font-size: 14px;
+}
+
+/* dealer */
+#dealer {
+    position: absolute;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    border: 5px dotted #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* player 1 */
+#player1 {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    border: 5px dotted #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* player 2 */
+#player2 {
+    position: absolute;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    border: 5px dotted #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Editing the title */
+header {
+    color: white;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+/* Edit the cards (imgs from card-div container) */
+#card-div img {
+    width: 80px;
+    height: auto;
+    margin: 5px;
+}
+
+
+
+  
