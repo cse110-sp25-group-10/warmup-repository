@@ -1,0 +1,1 @@
+/* Functionalities of the game ex:buttons */
