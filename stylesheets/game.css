@@ -59,8 +59,13 @@ body {
     height: 75%;
     border: 5px dotted #ffffff;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* game start / reset button */
+#game-button {
+    
 }
 
 /* krabby buttons */
@@ -75,6 +80,19 @@ body {
     color: white;
     font-family: 'Comic Sans MS';
     font-size: 14px;
+}
+
+/* fix */
+#game-start {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 99%;
+    height: 75%;
+    border: 5px dotted #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* card deck */
@@ -99,37 +117,48 @@ body {
 
 /* dealer */
 #dealer {
-    position: absolute;
+    position: relative;
     left: 0;
-    width: 20%;
+    width: 40%;
     height: 100%;
     border: 5px dotted #ffffff;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;      
+    justify-content: flex-start; 
+    align-items: center;      
 }
 
-/* player 1 */
-#player1 {
-    position: absolute;
-    width: 20%;
-    height: 100%;
-    border: 5px dotted #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* edits score keeper image for dealer */
+#dealer img {
+    width: 175px;  
+    height: auto;  
+    object-fit: contain; /* makes sure the image fits nicely */
 }
 
-/* player 2 */
-#player2 {
+/* add text to dealer score sign */
+#image-text-dealer {
     position: absolute;
+    top: 10px;
+}
+
+/* player */
+#player {
+    position: relative;
     right: 0;
-    width: 20%;
+    width: 40%;
     height: 100%;
     border: 5px dotted #ffffff;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;      
+    justify-content: flex-start; 
+    align-items: center; 
+}
+
+/* edits score keeper image for player */
+#player img {
+    width: 175px;  
+    height: auto;  
+    object-fit: contain;
 }
 
 /* Editing the title */
