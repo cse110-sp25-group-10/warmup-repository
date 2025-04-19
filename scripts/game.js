@@ -1,5 +1,5 @@
 //method to create a simple blackjack game using suits and values instead of images
-const suits = ['♥', '♦', '♣', '♠'];
+const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
 const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
 // First initialize the deck and hands
@@ -68,10 +68,12 @@ function renderHand(hand, elementId) {
     const container = document.getElementById(elementId);
     container.innerHTML = '';
     hand.forEach(card => {
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.textContent = `${card.value}${card.suit}`;
-        container.appendChild(div);
+        const img = document.createElement('img');
+        const fileName = `${card.suit}_${card.value.toLowerCase()}.png`;
+        img.src = `./assets/cards/${fileName}`;
+        img.alt = `${card.value} of ${card.suit}`;
+        img.className = 'card';
+        container.appendChild(img);
     });
 }
 
