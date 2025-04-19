@@ -77,6 +77,26 @@ body {
     font-size: 14px;
 }
 
+/* card deck */
+#card-deck {
+    position: absolute;
+    height: 150px;
+    /*margin-left: 300px;*/
+    right: 0;
+    /* animation: dance 0.5s ease-in-out infinite; */
+}
+
+/* cards text */
+#cards {
+    position: absolute;
+    top: -15px;
+    /*margin-left: 750px;*/
+    right: 0;
+    color: gray;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 15px;
+}
+
 /* dealer */
 #dealer {
     position: absolute;
