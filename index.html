@@ -4,29 +4,61 @@
         <title>Black Jack</title>
         <meta charset="UTF-8">
         <link rel="icon" href="assets/icons/spade.ico">
-        <link rel="stylesheet" href="stylesheets/game.css">
+        <link rel="stylesheet" href="stylesheets/ui.css">
+        <link rel="stylesheet" href="stylesheets/card.css">
     </head>
     <body>
+        <noscript>This game needs JavaScript to run!</noscript>
+        <script type="module" src="modules/CardComponent.js"></script>
+        <script src="scripts/game.js"></script>
+        <header>
+            <h1>♠️ Blackjack ♥️</h1>
+        </header>
         <main>
-            <noscript>This game needs JavaScript to run!</noscript>
-            <script type="module" src="modules/CardComponent.js"></script>
-            <script src="scripts/game.js"></script>
-            <content-container>
-                <dealer-container></dealer-container>
-                <ui-container>
-                        <p id="playerCount">0</p>
-                        <button id="hitBtn">Hit</button>
-                        <button id="standBtn">Stand</button>
+            <status-bar>
+                <h2>Money: $<span id="playerMoneyTotal">0</span></h2>
+                <h2>Current Bet: $<span id="betTotal">0</span></h2>
+            </status-bar>
+            <bet-options-bar>
+                <subtract-buttons>
+                    <button class="subtractBetBtn" data-bet-value="-500">-$500</button>
+                    <button class="subtractBetBtn" data-bet-value="-100">-$100</button>
+                    <button class="subtractBetBtn" data-bet-value="-10">-$10</button>
+                    <button class="subtractBetBtn" data-bet-value="-1">-$1</button>
+                </subtract-buttons>
+                <button id="dealBtn">Deal</button>
+                <add-buttons>
+                    <button class="addBetBtn" data-bet-value="1">+$1</button>
+                    <button class="addBetBtn" data-bet-value="10">+$10</button>
+                    <button class="addBetBtn" data-bet-value="100">+$100</button>
+                    <button class="addBetBtn" data-bet-value="500">+$500</button>
+                </add-buttons>
+            </bet-options-bar>
+            <game-container>
+                <deck-container></deck-container>
+                <black-jack-container>
+                    <h2>Dealer's Hand</h2>
+                    <section class="handSection" id="dealerSection">
+                        <dealer-container></dealer-container>
                         <p id="dealerCount">0</p>
-                </ui-container>
-                <player-container></player-container>
-                <dialog id="gameMenu">
-                    <nav>
-                        <h2 id="gameResult">Game Result</h2>
-                        <button id="playAgainBtn">Play Again</button>
-                    </nav>
-                </dialog>
-            </content-container>
+                    </section>
+                    <h2>Players's Hand</h2>
+                    <section class="handSection" id="playerSection">
+                        <player-container></player-container>
+                        <p id="playerCount">0</p>
+                    </section>
+                    <ui-container>
+                        <button class="uiBtn" id="hitBtn">Hit</button>
+                        <button class="uiBtn" id="standBtn">Stand</button>
+                    </ui-container>
+                </black-jack-container>
+            </game-container>
+            <dialog id="gameMenu">
+                <nav>
+                    <h2 id="gameResult">Game Result</h2>
+                    <button id="playAgainBtn">Play Again</button>
+                </nav>
+            </dialog>
         </main>
     </body>
 </html>
