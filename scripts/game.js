@@ -131,6 +131,7 @@ window.addEventListener("DOMContentLoaded", () => {
             return;
         } else {
             currentBet = betInput.value*1;
+            betMoneyText.textContent = `${currentBet}`;
         }
         initGame();
     }
