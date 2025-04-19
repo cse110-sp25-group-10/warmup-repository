@@ -54,8 +54,8 @@
 /** || Main Styling */
 body {
     width: 100%;
-    height: 100vh;
-    max-height: 100%;
+    height: 120vh;
+    max-height: 120%;
     padding: 0 var(--default-padding) var(--default-padding);
     background: linear-gradient(var(--gradient-angle), var(--surface-color-1), var(--surface-color-0));
     display: flex;
@@ -67,7 +67,7 @@ main {
     width: 100%;
     height: 100%;
     max-width: var(--max-main-width);
-    max-height: 100vh;
+    max-height: 120vh;
     padding: var(--default-padding);
     background-color: var(--surface-opacity-1);
     display: grid;
