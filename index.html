@@ -20,9 +20,9 @@
             <button id="split" class="image-button">SPLIT</button>
             <button id="surrender" class="image-button">SURRENDER</button>
 
-            <div id="game-start">
+            <!--<div id="game-start">
                 <button id="game-button">Start Game!</button>
-            </div>
+            </div>-->
             
             <!--cards-->
             <img id="card-deck" src="spongeCard.png">
@@ -32,22 +32,25 @@
 
                 <section id="dealer">
                     <img src="stylesheets/logo.png" id="dealer-score">
-                    <p class="image-text-dealer">DEALER</p>
+                    <div id="dealer-container">
+
+                    </div>
                 </section>
+
+                <div id="game-start">
+                    <button id="game-button">Start Game!</button>
+                </div>
 
                 <section id="player">
                     <img src="stylesheets/logo.png" id="player-score">
-                    <p class="image-text-player">YOU</p>
+                    <div id="player-container">
+
+                    </div>
                 </section>
 
-                <!--div is a container that js can find and add stuff to it-->
-                <!--<div id="card-div"></div>-->
-
-                <!-- shuffle button here -->
-                <!--<button id="shuffle">Shuffle!</button>-->
             </section>
         </main>
-        <!--load js after container is made
-        <script src="modules/CardComponent.js"></script> -->
+        <!--load js for game and cards-->
+        <script src="scripts/game.js"></script>
     </body>
 </html>

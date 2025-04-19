@@ -47,7 +47,7 @@ body {
 #game-box {
     position: relative;
     width: 70%;
-    height: 80%;
+    height: 100%;
     border: 5px dotted #ffffff;
 }
 
@@ -63,10 +63,10 @@ body {
     align-items: flex-start;
 }
 
-/* game start / reset button */
+/* game start / reset button 
 #game-button {
     
-}
+}*/
 
 /* krabby buttons */
 .image-button {
@@ -161,18 +161,54 @@ body {
     object-fit: contain;
 }
 
+/* Containers for the cards */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#dealer-container {
+    position: relative;
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;  
+    width: 100%;
+    flex-wrap: wrap; /* wrap when cards go out of containers */
+}
+
+#player-container {
+    position: relative;
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px; 
+    width: 100%;
+    flex-wrap: wrap; /* wrap when cards go out of containers */
+}
+
+/* fix cards in the containers above */
+#dealer-container img {
+    width: 90px;      
+    height: auto;     
+    object-fit: cover;   
+    margin-top: 20px;
+    margin-left: 2px;
+}
+
+#player-container img {
+    width: 90px;     
+    height: auto;      
+    object-fit: cover;
+    margin-top: 20px;
+    margin-left: 2px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 /* Editing the title */
 header {
     color: white;
     font-family: 'Comic Sans MS', cursive, sans-serif;
 }
 
-/* Edit the cards (imgs from card-div container) */
-#card-div img {
-    width: 80px;
-    height: auto;
-    margin: 5px;
-}
 
 
 

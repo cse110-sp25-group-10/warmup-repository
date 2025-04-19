@@ -1,5 +1,6 @@
-/* Create images from the filenames! */
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* IGNORE FILE: Moved contents of this file into game.js */
+/********************************************/
+
 
 /* Need DOM (document object model/interface) to help js interact with structure of html doc */
 document.addEventListener("DOMContentLoaded", function() {
@@ -17,23 +18,21 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     })
 
-    /* Shuffle here */
-    function shuffle(cards) {
-        
-    }
+    /* make cards accessible through all files */
+    window.card_files = card_files;
 
-    /* This is all just to print the cards onto the page */
-    /* Create img for each file. document is an object that represents the entire HTML document (webpage) */
+    /* This is all just to print the cards onto the page
+    Create img for each file. document is an object that represents the entire HTML document (webpage)
     const div = document.getElementById("card-div");
 
     for (let i = 0; i < card_files.length; i++) {
         const file = card_files[i];
         const img = document.createElement("img");
-        /* src is the source which would be in the assets folder */
+        src is the source which would be in the assets folder
         img.src = "assets/cards/" + file;
-        /* alt is important for when image can't be loaded */
+         alt is important for when image can't be loaded 
         img.alt = file;
         div.appendChild(img);
-    }
+    }*/
 
 });
