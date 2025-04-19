@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Black Jack</title>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackjack Game</title>
+  <link rel="stylesheet" href="CardComponent.css">
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+  <main class="game-container">
+    <h1>Blackjack</h1>
+    
+    <section>
+      <p>Cards remaining in deck: <span id="deck-count">52</span></p>
+      <p id="message">Welcome to Blackjack! Click 'Deal' to start a new game.</p>
+    </section>
+    
+    <section class="game-area">
+      <article>
+        <h2>Dealer's Hand</h2>
+        <section id="dealer-hand" class="hand"></section>
+      </article>
+      
+      <article>
+        <h2>Your Hand</h2>
+        <section id="player-hand" class="hand"></section>
+      </article>
+    </section>
+    
+    <nav>
+      <button id="deal-button">Deal</button>
+      <button id="hit-button" disabled>Hit</button>
+      <button id="stand-button" disabled>Stand</button>
+    </nav>
+  </main>
+
+  <script src="CardComponent.js"></script>
+  <script src="game.js"></script>
+</body>
 </html>

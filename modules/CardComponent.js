@@ -2,6 +2,7 @@ class CardComponent {
   constructor(cardNumber) {
     this.cardNumber = cardNumber;
     this.faceup = false;
+    this.element = null;
   }
 
   getSuit(cardNumber){
@@ -32,5 +33,35 @@ class CardComponent {
     return `${suit}_${valueName}.png`;
   }
 
+  flip() {
+    this.faceup = !this.faceup;
+    if (this.element) {
+      this.updateElement();
+    }
+    return this;
+  }
+
+  createCardElement() {
+    this.element = document.createElement('div');
+    this.element.className = 'card';
+    this.updateElement();
+    return this.element;
+  }
+
+  updateElement() {
+    if (!this.element) return;
+    
+    if (this.faceup) {
+      // Show card face
+      this.element.classList.add('faceup');
+      this.element.classList.remove('facedown');
+      this.element.style.backgroundImage = `url('assets/cards/${this.getCardFilename()}')`;
+    } else {
+      // Show card back
+      this.element.classList.add('facedown');
+      this.element.classList.remove('faceup');
+      this.element.style.backgroundImage = "url('images/cards/card_back.png')";
+    }
+  }
 
 }
