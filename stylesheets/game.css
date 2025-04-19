@@ -65,7 +65,7 @@ body {
   
   .card.facedown {
     background-color: #27408B;
-    background-image: url('images/cards/card_back.png');
+    background-image: url('assets/cards/back_dark.png');
   }
   
   .card:hover {
