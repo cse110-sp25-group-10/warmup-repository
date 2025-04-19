@@ -16,23 +16,13 @@
         </header>
         <main>
             <status-bar>
-                <h2>Money: $<span id="playerMoneyTotal">0</span></h2>
-                <h2>Current Bet: $<span id="betTotal">0</span></h2>
+                <h2>Money: $<span id="playerMoneyTotal">2500</span></h2>
+                <h2>Current Bet: $<span id="betTotal">10</span></h2>
             </status-bar>
             <bet-options-bar>
-                <subtract-buttons>
-                    <button class="subtractBetBtn" data-bet-value="-500">-$500</button>
-                    <button class="subtractBetBtn" data-bet-value="-100">-$100</button>
-                    <button class="subtractBetBtn" data-bet-value="-10">-$10</button>
-                    <button class="subtractBetBtn" data-bet-value="-1">-$1</button>
-                </subtract-buttons>
+                <label for="betAmount">$</label>
+                <input id="betAmount" name="betAmount" type="number" placeholder="10">
                 <button id="dealBtn">Deal</button>
-                <add-buttons>
-                    <button class="addBetBtn" data-bet-value="1">+$1</button>
-                    <button class="addBetBtn" data-bet-value="10">+$10</button>
-                    <button class="addBetBtn" data-bet-value="100">+$100</button>
-                    <button class="addBetBtn" data-bet-value="500">+$500</button>
-                </add-buttons>
             </bet-options-bar>
             <game-container>
                 <deck-container></deck-container>

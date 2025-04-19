@@ -9,11 +9,30 @@ window.addEventListener("DOMContentLoaded", () => {
     let playerAction = false;
     let gameActive = false;
 
+    // Get player money count using local storage
+    let playerMoney;
+    let currentBet = 10;
+    if (localStorage.getItem("playerMoney")) {
+        playerMoney = localStorage.getItem("playerMoney")*1;
+        
+    } else {
+        playerMoney = 2500;
+        localStorage.setItem("playerMoney", "2500")
+    }  
+
     // Main references
     const playerContainer = document.querySelector("player-container");
     const playerCount = document.querySelector("#playerCount");
     const dealerContainer = document.querySelector("dealer-container");
     const dealerCount = document.querySelector("#dealerCount");
+
+    // Status bar references
+    const playerMoneyText = document.querySelector("#playerMoneyTotal");
+    const betMoneyText = document.querySelector("#betTotal");
+    const betInput = document.querySelector("#betAmount");
+
+    // Update player money text
+    playerMoneyText.textContent = `${playerMoney}`;
 
     // Button References
     const hitBtn = document.querySelector("#hitBtn");
@@ -28,7 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // Add functionality to buttons
     hitBtn.addEventListener("click", playerHit);
     standBtn.addEventListener("click", playerStand);
-    dealBtn.addEventListener("click", initGame);
+    dealBtn.addEventListener("click", validateBet);
 
     // Dialog functionality
     dialogCloseBtn.addEventListener("click", closeDialog);
@@ -80,6 +99,7 @@ window.addEventListener("DOMContentLoaded", () => {
             await delay(800);
             const hiddenCard = dealerContainer.lastChild;
             hiddenCard.setAttribute("class", "revealed");
+            dealerCount.textContent = `${dealerScore}`;
             await delay(800);
             gameResult("lose");
         }
@@ -99,6 +119,22 @@ window.addEventListener("DOMContentLoaded", () => {
 
     /** || Game Functions */
 
+    // validate the bet amount in input
+    function validateBet() {
+        if (betInput.value == "") {
+            currentBet = 10;
+        } else if (isNaN(betInput.value*1)) {
+            return;
+        } else if (betInput.value*1 > playerMoney) {
+            return;
+        } else if (betInput.value*1 < 10) {
+            return;
+        } else {
+            currentBet = betInput.value*1;
+        }
+        initGame();
+    }
+
     // initialize the game with an empty hand and a shuffled deck.
     async function initGame() {
         if (!gameActive) {
@@ -112,7 +148,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
             // reset scores
             playerCount.textContent = `${playerScore}`;
-            dealerCount.textContent = `${dealerScore}`;  
+            dealerCount.textContent = `${dealerScore}`;
 
             // initialize deck
             for (let suit of SUITS) {
@@ -138,7 +174,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 if (cardValue > 10) {
                     dealerScore += 10;
                 } else if (cardValue === 1) {
-                    cardValue += 11;
+                    dealerScore += 11;
                     dealerAceCount++;
                 } else {
                     dealerScore += cardValue;
@@ -183,11 +219,17 @@ window.addEventListener("DOMContentLoaded", () => {
                 if (cardValue > 10) {
                     dealerScore += 10;
                 } else if (cardValue === 1) {
-                    cardValue += 11;
+                    dealerScore += 11;
                     dealerAceCount++;
                 } else {
                     dealerScore += cardValue;
                 }
+
+                if (dealerScore > 21 && dealerAceCount > 0) {
+                    dealerAceCount--;
+                    dealerScore -= 10; 
+                }
+
                 card.setAttribute("class", "flippedDealer");   
                 dealerCount.textContent = `${dealerScore}`;           
                 dealerContainer.appendChild(card);
@@ -216,10 +258,20 @@ window.addEventListener("DOMContentLoaded", () => {
         gameActive = false;
         if (result === "win") {
             gameResultText.textContent = "You Win!";
+            playerMoney += currentBet;
         } else if (result === "lose") {
             gameResultText.textContent = "You Lose!";
+            playerMoney -= currentBet;
         } else {
             gameResultText.textContent = "Draw!";
+        }
+        if (playerMoney === 0) {
+            playerMoney = 2500;
+            localStorage.setItem("playerMoney", playerMoney);
+             playerMoneyText.textContent = `${playerMoney}`;
+        } else {
+            localStorage.setItem("playerMoney", playerMoney);
+            playerMoneyText.textContent = `${playerMoney}`;
         }
         menuDialog.showModal();
     }
