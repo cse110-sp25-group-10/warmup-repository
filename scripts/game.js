@@ -122,6 +122,16 @@ function stand() {
     checkResult();
 }
 
+// The resetGame() function is called when the reset button is clicked
+function resetGame() {
+    playerHand = [];
+    dealerHand = [];
+    document.getElementById('result').textContent = '';
+    document.getElementById('player-cards').innerHTML = '';
+    document.getElementById('dealer-cards').innerHTML = '';
+    startGame();
+}
+
 // The startGame() function is called when the start button is clicked
 // The deck is created and shuffled
 // The player and dealer hands are initialized to empty arrays
