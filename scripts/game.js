@@ -28,11 +28,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Status bar references
     const playerMoneyText = document.querySelector("#playerMoneyTotal");
-    const betMoneyText = document.querySelector("#betTotal");
     const betInput = document.querySelector("#betAmount");
-
-    // Update player money text
-    playerMoneyText.textContent = `${playerMoney}`;
+    const betNotification = document.querySelector("#betNotification");
 
     // Button References
     const hitBtn = document.querySelector("#hitBtn");
@@ -40,14 +37,75 @@ window.addEventListener("DOMContentLoaded", () => {
     const dialogCloseBtn = document.querySelector("dialog > nav > button");
     const dealBtn = document.querySelector("#dealBtn");
 
+    // Betting button references
+    const betDownButtons = {
+        500: document.querySelector("#bet-down-500"),
+        100: document.querySelector("#bet-down-100"),
+        10: document.querySelector("#bet-down-10"),
+        1: document.querySelector("#bet-down-1")
+    };
+    const betUpButtons = {
+        1: document.querySelector("#bet-up-1"),
+        10: document.querySelector("#bet-up-10"),
+        100: document.querySelector("#bet-up-100"),
+        500: document.querySelector("#bet-up-500")
+    };
+
     // Menu References
     const menuDialog = document.querySelector("dialog");
     const gameResultText = document.querySelector("#gameResult");
 
+    // Update player money text and bet input
+    playerMoneyText.textContent = `${playerMoney}`;
+    betInput.value = currentBet;
+
+    let notificationTimeout = null;
+
+    // Function to show notification
+    function showNotification(message, duration = 3000) {
+        if (notificationTimeout) {
+            clearTimeout(notificationTimeout);
+        }
+        betNotification.textContent = message;
+        betNotification.classList.add("show");
+        
+        notificationTimeout = setTimeout(() => {
+            betNotification.classList.remove("show");
+        }, duration);
+    }
+
     // Add functionality to buttons
     hitBtn.addEventListener("click", playerHit);
     standBtn.addEventListener("click", playerStand);
-    dealBtn.addEventListener("click", validateBet);
+    dealBtn.addEventListener("click", () => validateBet());
+
+    // Add betting button event listeners
+    Object.entries(betDownButtons).forEach(([amount, button]) => {
+        button.addEventListener("click", () => adjustBet(-parseInt(amount)));
+    });
+    Object.entries(betUpButtons).forEach(([amount, button]) => {
+        button.addEventListener("click", () => adjustBet(parseInt(amount)));
+    });
+
+    // Add input event listener
+    betInput.addEventListener("input", () => {
+        if (!gameActive) {
+            const inputValue = parseInt(betInput.value) || 0;
+            if (inputValue > playerMoney) {
+                showNotification(`Maximum bet is $${playerMoney}`);
+                betInput.value = playerMoney;
+                currentBet = playerMoney;
+            } else if (inputValue < 1) {
+                showNotification("Minimum bet is $1");
+                betInput.value = 1;
+                currentBet = 1;
+            } else {
+                currentBet = inputValue;
+                betNotification.classList.remove("show");
+            }
+            updateBetButtons();
+        }
+    });
 
     // Dialog functionality
     dialogCloseBtn.addEventListener("click", closeDialog);
@@ -119,27 +177,64 @@ window.addEventListener("DOMContentLoaded", () => {
 
     /** || Game Functions */
 
-    // validate the bet amount in input
-    function validateBet() {
-        if (betInput.value == "") {
-            currentBet = 10;
-        } else if (isNaN(betInput.value*1)) {
-            return;
-        } else if (betInput.value*1 > playerMoney) {
-            return;
-        } else if (betInput.value*1 < 10) {
-            return;
-        } else {
-            currentBet = betInput.value*1;
-            betMoneyText.textContent = `${currentBet}`;
+    // Function to adjust bet amount
+    function adjustBet(amount) {
+        if (!gameActive) {
+            const newBet = currentBet + amount;
+            if (newBet > playerMoney) {
+                showNotification(`Maximum bet is $${playerMoney}`);
+                betInput.value = playerMoney;
+                currentBet = playerMoney;
+            } else if (newBet < 1) {
+                showNotification("Minimum bet is $1");
+                betInput.value = 1;
+                currentBet = 1;
+            } else {
+                currentBet = newBet;
+                betInput.value = currentBet;
+                betNotification.classList.remove("show");
+            }
+            updateBetButtons();
         }
-        initGame();
+    }
+
+    // Function to update betting buttons state
+    function updateBetButtons() {
+        // Disable decrease buttons if bet would go below 1
+        Object.entries(betDownButtons).forEach(([amount, button]) => {
+            button.disabled = gameActive || (currentBet - parseInt(amount) < 1);
+        });
+
+        // Disable increase buttons if bet would exceed player's money
+        Object.entries(betUpButtons).forEach(([amount, button]) => {
+            button.disabled = gameActive || (currentBet + parseInt(amount) > playerMoney);
+        });
+    }
+
+    // validate the bet amount
+    function validateBet() {
+        const inputValue = parseInt(betInput.value) || 0;
+        if (!gameActive) {
+            if (inputValue > playerMoney) {
+                showNotification(`Maximum bet is $${playerMoney}`);
+                return;
+            } else if (inputValue < 1) {
+                showNotification("Minimum bet is $1");
+                return;
+            }
+            currentBet = inputValue;
+            betNotification.classList.remove("show");
+            initGame();
+            updateBetButtons();
+        }
     }
 
     // initialize the game with an empty hand and a shuffled deck.
     async function initGame() {
         if (!gameActive) {
             gameActive = true;
+            // Disable betting buttons during game
+            updateBetButtons();
             // reset variables
             deck.length = 0;
             playerScore = 0;
@@ -275,10 +370,12 @@ window.addEventListener("DOMContentLoaded", () => {
             playerMoneyText.textContent = `${playerMoney}`;
         }
         menuDialog.showModal();
+        updateBetButtons(); // Enable betting buttons after game ends
     }
 
     function closeDialog() {
         menuDialog.close();
+        updateBetButtons(); // Enable betting buttons after game ends
     }
 
     /** || Animation Functions */
@@ -290,4 +387,6 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Initial button state update
+    updateBetButtons();
 });
