@@ -60,7 +60,7 @@ class CardComponent {
       // Show card back
       this.element.classList.add('facedown');
       this.element.classList.remove('faceup');
-      this.element.style.backgroundImage = "url('images/cards/card_back.png')";
+      this.element.style.backgroundImage = "url('assets/cards/back_dark.png')";
     }
   }
 
