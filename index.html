@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Black Jack</title>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0b3d91;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        .card {
+            display: inline-block;
+            width: 60px;
+            height: 90px;
+            line-height: 90px;
+            margin: 5px;
+            background-color: white;
+            color: black;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blackjack</h1>
+    </header>
+
+    <main>
+        <section aria-labelledby="dealer-heading">
+            <h2 id="dealer-heading">Dealer's Hand</h2>
+            <output id="dealer-cards" aria-live="polite"></output>
+        </section>
+
+        <section aria-labelledby="player-heading">
+            <h2 id="player-heading">Your Hand</h2>
+            <output id="player-cards" aria-live="polite"></output>
+        </section>
+
+        <nav aria-label="Game controls">
+            <button type="button" onclick="hit()">Hit</button>
+            <button type="button" onclick="stand()">Stand</button>
+        </nav>
+
+        <section>
+            <h2 id="result" aria-live="polite"></h2>
+        </section>
+    </main>
+
+    <footer>
+        <small>&copy; Team 10 blackjack</small>
+    </footer>
+
+    <script src="./scripts/game.js"></script>
+</body>
 </html>
