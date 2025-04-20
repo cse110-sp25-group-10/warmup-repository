@@ -148,6 +148,10 @@ window.addEventListener("DOMContentLoaded", () => {
             playerScore -= 10; 
         }
 
+        let drawCardSFX = new Audio("assets/sounds/drawCard.mp3#t=0.3");
+        drawCardSFX.volume = 0.2;
+        drawCardSFX.play();
+
         playerCount.textContent = `${playerScore}`;
         card.setAttribute("class", "flipped");
         playerContainer.appendChild(card);
@@ -165,6 +169,7 @@ window.addEventListener("DOMContentLoaded", () => {
             await delay(800);
             gameResult("lose");
         }
+        drawCardSFX = null;
     }
 
     /** || Deck Functions */
@@ -284,6 +289,10 @@ window.addEventListener("DOMContentLoaded", () => {
                 let cardValue = cardJS['value'];
                 const card = createCard(cardJS['suit'], cardValue);
 
+                let drawCardSFX = new Audio("assets/sounds/drawCard.mp3#t=0.3");
+                drawCardSFX.volume = 0.2;
+                drawCardSFX.play();
+
                 if (cardValue > 10) {
                     dealerScore += 10;
                 } else if (cardValue === 1) {
@@ -301,6 +310,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 }
                 dealerContainer.appendChild(card);
                 await delay(500);
+                drawCardSFX = null;
             }
 
             hitCard();
@@ -351,10 +361,15 @@ window.addEventListener("DOMContentLoaded", () => {
                     dealerScore -= 10; 
                 }
 
+                let drawCardSFX = new Audio("assets/sounds/drawCard.mp3#t=0.3");
+                drawCardSFX.volume = 0.2;
+                drawCardSFX.play();
+
                 card.setAttribute("class", "flippedDealer");   
                 dealerCount.textContent = `${dealerScore}`;           
                 dealerContainer.appendChild(card);
                 await delay(800);
+                drawCardSFX = null;
             }
             if (dealerScore < playerScore) {
                 gameResult("win");
