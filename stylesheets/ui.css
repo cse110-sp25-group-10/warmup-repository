@@ -16,6 +16,16 @@
     --hand-gap: clamp(0.5rem, 2vw, 1rem);
     --input-length: clamp(150px, 15vw, 200px);
 
+    --button-hover-height: 0.15em;
+    --button-click-height: 0em;
+    --button-shadow-x-offset: 0;
+    --button-shadow-y-offset: 0.5em;
+    --button-shadow-no-offset: 0;
+    --button-shadow-blur-value: 0.5em;
+    --button-shadow-scaling: -0.25em;
+
+
+
     /** Color variables*/
     --surface-color-0: #2a623d;
     --surface-color-1: #1a472a;
@@ -33,6 +43,8 @@
     --deal-color-1: #253cbd;
 
     --ui-color-0: #495ab9;
+
+    --button-shadow-color: black;
     
     /** Font variables */
     --font-color-0: #fff;
