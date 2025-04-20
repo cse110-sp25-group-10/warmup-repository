@@ -362,6 +362,7 @@ window.addEventListener("DOMContentLoaded", () => {
             gameResultText.textContent = "Draw!";
         }
         if (playerMoney === 0) {
+            gameResultText.textContent = "Game Over";
             playerMoney = 2500;
             localStorage.setItem("playerMoney", playerMoney);
              playerMoneyText.textContent = `${playerMoney}`;
