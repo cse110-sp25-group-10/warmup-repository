@@ -1,20 +1,20 @@
 :root {
     /** Sizing variables */
     --max-main-width: 62.5rem;
-    --default-margin: 1rem;
-    --slight-margin: 0.5rem;
-    --default-padding: 1rem;
-    --slight-padding: 0.5rem;
-    --button-padding: 0.5rem;
-    --button-gap: 0.5rem;
-    --button-height: 40px;
-    --button-width: 100px;
-    --button-height-2: 60px;
-    --button-width-2: 120px;
-    --button-height-3: 80px;
-    --button-width-3: 200px;
-    --hand-gap: 1rem;
-    --input-length: 200px;
+    --default-margin: clamp(0.5rem, 2vw, 1rem);
+    --slight-margin: clamp(0.25rem, 1vw, 0.5rem);
+    --default-padding: clamp(0.5rem, 2vw, 1rem);
+    --slight-padding: clamp(0.25rem, 1vw, 0.5rem);
+    --button-padding: clamp(0.25rem, 1vw, 0.5rem);
+    --button-gap: clamp(0.5rem, 1.5vw, 1rem);
+    --button-height: clamp(35px, 5vw, 40px);
+    --button-width: clamp(60px, 8vw, 70px);
+    --button-height-2: clamp(50px, 7vw, 60px);
+    --button-width-2: clamp(100px, 12vw, 120px);
+    --button-height-3: clamp(70px, 9vw, 80px);
+    --button-width-3: clamp(180px, 15vw, 200px);
+    --hand-gap: clamp(0.5rem, 2vw, 1rem);
+    --input-length: clamp(150px, 15vw, 200px);
 
     /** Color variables*/
     --surface-color-0: #2a623d;
@@ -86,6 +86,44 @@ status-bar {
     justify-content: space-between;
     border-radius: var(--border-radius);
     border: var(--border-size) var(--border-color) var(--border-style);
+    position: relative;
+}
+
+status-bar h2 {
+    padding: var(--default-padding) 0;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+status-bar h2 input {
+    width: clamp(60px, 8vw, 80px);
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    background: none;
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--font-color-0);
+    font-family: inherit;
+    font-weight: inherit;
+    padding: 0 4px;
+    margin-left: 4px;
+    text-align: right;
+}
+
+status-bar h2 input:focus {
+    outline: none;
+    border-bottom-color: var(--font-color-0);
+}
+
+/** Remove arrows from input */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 bet-options-bar {
@@ -97,15 +135,46 @@ bet-options-bar {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-wrap: nowrap;
+    max-width: 100%;
 }
 
-subtract-buttons, add-buttons {
-    width: 100%;
+.bet-group {
     display: flex;
     gap: var(--button-gap);
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-wrap: nowrap;
+    max-width: 100%;
+}
+
+.bet-button {
+    max-width: var(--button-width);
+    min-width: clamp(45px, 6vw, 55px);
+    max-height: var(--button-height);
+    padding: var(--button-padding);
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+    width: 100%;
+}
+
+#dealBtn.deal-button {
+    margin: 0 var(--slight-margin);
+    min-width: clamp(70px, 10vw, 90px);
+    max-width: var(--button-width-2);
+    max-height: var(--button-height);
+    background: linear-gradient(var(--gradient-angle), var(--deal-color-0), var(--deal-color-1));
+    padding: clamp(8px, 1.5vw, 11px) clamp(12px, 2vw, 16px);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+/* Style for decrease bet buttons */
+button[id^="bet-down"] {
+    background: linear-gradient(var(--gradient-angle), var(--subtract-color-0), var(--subtract-color-1));
+}
+
+/* Style for increase bet buttons */
+button[id^="bet-up"] {
+    background: linear-gradient(var(--gradient-angle), var(--add-color-0), var(--add-color-1));
 }
 
 game-container {
@@ -191,19 +260,6 @@ bet-options-bar > input {
     color: var(--font-color-0);
 }
 
-/** Remove arrows from input */
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
 /** || Button Styling */
 button {
     width: 100%;
@@ -218,13 +274,6 @@ button {
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
-}
-
-#dealBtn {
-    margin: 0 var(--slight-margin);
-    max-width: var(--button-width);
-    max-height: var(--button-height);
-    background: linear-gradient(var(--gradient-angle), var(--deal-color-0), var(--deal-color-1));
 }
 
 .uiBtn {
@@ -242,6 +291,42 @@ button:disabled {
     /** Main Styling */
     h1 {
         display: none;
+    }
+
+    status-bar {
+        padding: var(--slight-padding);
+    }
+
+    status-bar h2 {
+        font-size: 1.2rem;
+        padding: calc(var(--default-padding) * 0.5);
+    }
+
+    status-bar h2 input {
+        width: 60px;
+        font-size: 1.2rem;
+    }
+
+    bet-options-bar {
+        padding: var(--slight-padding);
+    }
+
+    .bet-group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        gap: var(--button-gap);
+    }
+
+    .bet-button {
+        justify-self: center;
+        width: 100%;
+    }
+
+    #dealBtn.deal-button {
+        min-width: 80px;
+        padding: 8px 15px;
+        font-size: 1rem;
     }
 }
 
@@ -290,4 +375,40 @@ dialog > nav > button {
 
 dialog::backdrop {
     background-color: rgba(0,0,0,0.5);
+}
+
+.bet-notification {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(var(--gradient-angle), var(--subtract-color-0), var(--subtract-color-1));
+    color: var(--font-color-0);
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin-top: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 100;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+}
+
+.bet-notification.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media screen and (max-width: 768px) {
+    .bet-notification {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+        margin-top: 6px;
+    }
 }

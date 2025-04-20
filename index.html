@@ -17,12 +17,23 @@
         <main>
             <status-bar>
                 <h2>Money: $<span id="playerMoneyTotal">2500</span></h2>
-                <h2>Current Bet: $<span id="betTotal">10</span></h2>
+                <h2>Current Bet: $<input id="betAmount" name="betAmount" type="number" placeholder="10"></h2>
+                <div id="betNotification" class="bet-notification"></div>
             </status-bar>
             <bet-options-bar>
-                <label for="betAmount">$</label>
-                <input id="betAmount" name="betAmount" type="number" placeholder="10">
-                <button id="dealBtn">Deal</button>
+                <div class="bet-group">
+                    <button id="bet-down-500" class="bet-button">-$500</button>
+                    <button id="bet-down-100" class="bet-button">-$100</button>
+                    <button id="bet-down-10" class="bet-button">-$10</button>
+                    <button id="bet-down-1" class="bet-button">-$1</button>
+                </div>
+                <button id="dealBtn" class="deal-button">Deal</button>
+                <div class="bet-group">
+                    <button id="bet-up-1" class="bet-button">+$1</button>
+                    <button id="bet-up-10" class="bet-button">+$10</button>
+                    <button id="bet-up-100" class="bet-button">+$100</button>
+                    <button id="bet-up-500" class="bet-button">+$500</button>
+                </div>
             </bet-options-bar>
             <game-container>
                 <deck-container></deck-container>

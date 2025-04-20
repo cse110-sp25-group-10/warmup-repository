@@ -1,7 +1,7 @@
 /** || Card Component */
 card-component {
     width: 100%;
-    max-width: 100px;
+    max-width: 10vh;
     height: auto;
 
     display: flex;
@@ -13,7 +13,7 @@ card-component {
 
 card-component > img {
     width: 100%;
-    max-width: 100px;
+    max-width: 10vh;
     height: auto;
 }
 
