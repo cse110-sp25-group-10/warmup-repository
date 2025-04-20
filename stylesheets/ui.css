@@ -1,20 +1,20 @@
 :root {
     /** Sizing variables */
     --max-main-width: 62.5rem;
-    --default-margin: 1rem;
-    --slight-margin: 0.5rem;
-    --default-padding: 1rem;
-    --slight-padding: 0.5rem;
-    --button-padding: 0.5rem;
-    --button-gap: 0.5rem;
-    --button-height: 40px;
-    --button-width: 100px;
-    --button-height-2: 60px;
-    --button-width-2: 120px;
-    --button-height-3: 80px;
-    --button-width-3: 200px;
-    --hand-gap: 1rem;
-    --input-length: 200px;
+    --default-margin: clamp(0.5rem, 2vw, 1rem);
+    --slight-margin: clamp(0.25rem, 1vw, 0.5rem);
+    --default-padding: clamp(0.5rem, 2vw, 1rem);
+    --slight-padding: clamp(0.25rem, 1vw, 0.5rem);
+    --button-padding: clamp(0.25rem, 1vw, 0.5rem);
+    --button-gap: clamp(0.5rem, 1.5vw, 1rem);
+    --button-height: clamp(35px, 5vw, 40px);
+    --button-width: clamp(60px, 8vw, 70px);
+    --button-height-2: clamp(50px, 7vw, 60px);
+    --button-width-2: clamp(100px, 12vw, 120px);
+    --button-height-3: clamp(70px, 9vw, 80px);
+    --button-width-3: clamp(180px, 15vw, 200px);
+    --hand-gap: clamp(0.5rem, 2vw, 1rem);
+    --input-length: clamp(150px, 15vw, 200px);
 
     /** Color variables*/
     --surface-color-0: #2a623d;
@@ -89,14 +89,19 @@ status-bar {
     position: relative;
 }
 
+status-bar h2 {
+    padding: var(--default-padding) 0;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
 status-bar h2 input {
-    width: 80px;
+    width: clamp(60px, 8vw, 80px);
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     background: none;
     border: none;
     border-bottom: 2px solid var(--border-color);
     color: var(--font-color-0);
     font-family: inherit;
-    font-size: inherit;
     font-weight: inherit;
     padding: 0 4px;
     margin-left: 4px;
@@ -131,6 +136,7 @@ bet-options-bar {
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
+    max-width: 100%;
 }
 
 .bet-group {
@@ -139,24 +145,26 @@ bet-options-bar {
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
+    max-width: 100%;
 }
 
 .bet-button {
-    max-width: 80px;
-    min-width: 60px;
+    max-width: var(--button-width);
+    min-width: clamp(45px, 6vw, 55px);
     max-height: var(--button-height);
     padding: var(--button-padding);
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+    width: 100%;
 }
 
 #dealBtn.deal-button {
     margin: 0 var(--slight-margin);
-    min-width: 100px;
+    min-width: clamp(70px, 10vw, 90px);
     max-width: var(--button-width-2);
     max-height: var(--button-height);
     background: linear-gradient(var(--gradient-angle), var(--deal-color-0), var(--deal-color-1));
-    padding: 11px 20px;
-    font-size: 1.1rem;
+    padding: clamp(8px, 1.5vw, 11px) clamp(12px, 2vw, 16px);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
 
 /* Style for decrease bet buttons */
@@ -285,20 +293,34 @@ button:disabled {
         display: none;
     }
 
+    status-bar {
+        padding: var(--slight-padding);
+    }
+
+    status-bar h2 {
+        font-size: 1.2rem;
+        padding: calc(var(--default-padding) * 0.5);
+    }
+
+    status-bar h2 input {
+        width: 60px;
+        font-size: 1.2rem;
+    }
+
     bet-options-bar {
         padding: var(--slight-padding);
-        gap: calc(var(--button-gap) * 0.75);
     }
 
     .bet-group {
-        gap: calc(var(--button-gap) * 0.75);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        gap: var(--button-gap);
     }
 
     .bet-button {
-        max-width: 70px;
-        min-width: 50px;
-        font-size: 0.8rem;
-        padding: 4px;
+        justify-self: center;
+        width: 100%;
     }
 
     #dealBtn.deal-button {
