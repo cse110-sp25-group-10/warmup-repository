@@ -154,6 +154,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
         if (playerScore > 21) {
             playerAction = false;
+
+            // Change state of buttons once playerAction is false
+            updateGameButtons();
+
             await delay(800);
             const hiddenCard = dealerContainer.lastChild;
             hiddenCard.setAttribute("class", "revealed");
@@ -209,6 +213,12 @@ window.addEventListener("DOMContentLoaded", () => {
         Object.entries(betUpButtons).forEach(([amount, button]) => {
             button.disabled = gameActive || (currentBet + parseInt(amount) > playerMoney);
         });
+    }
+
+    // Function to update state of hit and stand buttons
+    function updateGameButtons() {
+        hitBtn.disabled = !playerAction;
+        standBtn.disabled = !playerAction;
     }
 
     // validate the bet amount
@@ -290,12 +300,17 @@ window.addEventListener("DOMContentLoaded", () => {
             await delay(500);
             hitCard();
             playerAction = true;
+            updateGameButtons();
         }
     }
 
 
     function playerStand() {
         if (playerAction) {
+            // If standing, player cannot act anymore, and the buttons should be greyed out
+            playerAction = false;
+            updateGameButtons();
+
             dealerTurn();
         }
     }
@@ -303,6 +318,9 @@ window.addEventListener("DOMContentLoaded", () => {
     // Runs when the player hits stand, deals cards until score is higher than the player and less than 17
     async function dealerTurn() {
         playerAction = false;
+        
+        // Changes the state of the buttons since playerAction is false now
+        updateGameButtons();
         const hiddenCard = dealerContainer.lastChild;
         hiddenCard.setAttribute("class", "revealed");
         dealerCount.textContent = `${dealerScore}`;
@@ -352,6 +370,11 @@ window.addEventListener("DOMContentLoaded", () => {
     // Displays the appropriate result in the menu
     function gameResult(result) {
         gameActive = false;
+
+        playerAction = false
+        updateGameButtons();
+
+
         if (result === "win") {
             gameResultText.textContent = "You Win!";
             playerMoney += currentBet;
@@ -389,4 +412,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Initial button state update
     updateBetButtons();
+    updateGameButtons();
 });
