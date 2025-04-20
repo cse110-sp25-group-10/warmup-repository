@@ -157,6 +157,7 @@ bet-options-bar {
     width: 100%;
 }
 
+/* Style for active and inactive deal button*/
 #dealBtn.deal-button {
     margin: 0 var(--slight-margin);
     min-width: clamp(70px, 10vw, 90px);
@@ -165,6 +166,11 @@ bet-options-bar {
     background: linear-gradient(var(--gradient-angle), var(--deal-color-0), var(--deal-color-1));
     padding: clamp(8px, 1.5vw, 11px) clamp(12px, 2vw, 16px);
     font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+#dealBtn.deal-button:disabled {
+    background: grey; 
+    opacity: 0.5; 
 }
 
 /* Style for decrease bet buttons */
@@ -284,6 +290,7 @@ button {
 
 button:disabled {
     background-color: grey;
+    opacity: 0.5; 
 }
 
 /** || Mobile layout */

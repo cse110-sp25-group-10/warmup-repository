@@ -217,8 +217,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Function to update state of hit and stand buttons
     function updateGameButtons() {
+        // Disable hit, stand, and deal buttons accordingly
         hitBtn.disabled = !playerAction;
         standBtn.disabled = !playerAction;
+    }
+
+    // Keep deal button updated, states are at different times from hit and stand
+    function updateDealButton() {
+        dealBtn.disabled = gameActive;
     }
 
     // validate the bet amount
@@ -243,7 +249,8 @@ window.addEventListener("DOMContentLoaded", () => {
     async function initGame() {
         if (!gameActive) {
             gameActive = true;
-            // Disable betting buttons during game
+            // Disable betting buttons and deal button during game
+            updateDealButton();
             updateBetButtons();
             // reset variables
             deck.length = 0;
@@ -394,6 +401,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         menuDialog.showModal();
         updateBetButtons(); // Enable betting buttons after game ends
+        updateDealButton(); // Enable dealing button again after game end
     }
 
     function closeDialog() {
@@ -410,7 +418,8 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Initial button state update
+    // Initial button state updates
     updateBetButtons();
     updateGameButtons();
+    updateDealButton();
 });
