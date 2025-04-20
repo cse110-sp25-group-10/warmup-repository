@@ -154,6 +154,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
         if (playerScore > 21) {
             playerAction = false;
+
+            // Change state of buttons once playerAction is false
+            updateGameButtons();
+
             await delay(800);
             const hiddenCard = dealerContainer.lastChild;
             hiddenCard.setAttribute("class", "revealed");
@@ -211,6 +215,18 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Function to update state of hit and stand buttons
+    function updateGameButtons() {
+        // Disable hit, stand, and deal buttons accordingly
+        hitBtn.disabled = !playerAction;
+        standBtn.disabled = !playerAction;
+    }
+
+    // Keep deal button updated, states are at different times from hit and stand
+    function updateDealButton() {
+        dealBtn.disabled = gameActive;
+    }
+
     // validate the bet amount
     function validateBet() {
         const inputValue = parseInt(betInput.value) || 0;
@@ -233,7 +249,8 @@ window.addEventListener("DOMContentLoaded", () => {
     async function initGame() {
         if (!gameActive) {
             gameActive = true;
-            // Disable betting buttons during game
+            // Disable betting buttons and deal button during game
+            updateDealButton();
             updateBetButtons();
             // reset variables
             deck.length = 0;
@@ -290,12 +307,17 @@ window.addEventListener("DOMContentLoaded", () => {
             await delay(500);
             hitCard();
             playerAction = true;
+            updateGameButtons();
         }
     }
 
 
     function playerStand() {
         if (playerAction) {
+            // If standing, player cannot act anymore, and the buttons should be greyed out
+            playerAction = false;
+            updateGameButtons();
+
             dealerTurn();
         }
     }
@@ -303,6 +325,9 @@ window.addEventListener("DOMContentLoaded", () => {
     // Runs when the player hits stand, deals cards until score is higher than the player and less than 17
     async function dealerTurn() {
         playerAction = false;
+        
+        // Changes the state of the buttons since playerAction is false now
+        updateGameButtons();
         const hiddenCard = dealerContainer.lastChild;
         hiddenCard.setAttribute("class", "revealed");
         dealerCount.textContent = `${dealerScore}`;
@@ -352,6 +377,11 @@ window.addEventListener("DOMContentLoaded", () => {
     // Displays the appropriate result in the menu
     function gameResult(result) {
         gameActive = false;
+
+        playerAction = false
+        updateGameButtons();
+
+
         if (result === "win") {
             gameResultText.textContent = "You Win!";
             playerMoney += currentBet;
@@ -372,6 +402,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         menuDialog.showModal();
         updateBetButtons(); // Enable betting buttons after game ends
+        updateDealButton(); // Enable dealing button again after game end
     }
 
     function closeDialog() {
@@ -388,6 +419,8 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Initial button state update
+    // Initial button state updates
     updateBetButtons();
+    updateGameButtons();
+    updateDealButton();
 });
