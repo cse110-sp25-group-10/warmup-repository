@@ -157,11 +157,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
             // Change state of buttons once playerAction is false
             updateGameButtons();
-
-            await delay(800);
-            const hiddenCard = dealerContainer.lastChild;
-            hiddenCard.setAttribute("class", "revealed");
-            dealerCount.textContent = `${dealerScore}`;
+            // Dealer doesn't show other card in casinos because card counting
+            // await delay(800);
+            // const hiddenCard = dealerContainer.lastChild;
+            // hiddenCard.setAttribute("class", "revealed");
+            // dealerCount.textContent = `${dealerScore}`;
             await delay(800);
             gameResult("lose");
         }
@@ -328,47 +328,59 @@ window.addEventListener("DOMContentLoaded", () => {
         
         // Changes the state of the buttons since playerAction is false now
         updateGameButtons();
+
+        // Reveal dealer's other card
         const hiddenCard = dealerContainer.lastChild;
         hiddenCard.setAttribute("class", "revealed");
         dealerCount.textContent = `${dealerScore}`;
+
         await delay(800);
-        if (dealerScore < playerScore) {
-            while (dealerScore < 17 && dealerScore < playerScore) {
-                let cardJS = deck.pop();
-                let cardValue = cardJS['value'];
-                const card = createCard(cardJS['suit'], cardValue);
-                if (cardValue > 10) {
-                    dealerScore += 10;
-                } else if (cardValue === 1) {
-                    dealerScore += 11;
-                    dealerAceCount++;
-                } else {
-                    dealerScore += cardValue;
-                }
-
-                if (dealerScore > 21 && dealerAceCount > 0) {
-                    dealerAceCount--;
-                    dealerScore -= 10; 
-                }
-
-                card.setAttribute("class", "flippedDealer");   
-                dealerCount.textContent = `${dealerScore}`;           
-                dealerContainer.appendChild(card);
-                await delay(800);
-            }
-            if (dealerScore < playerScore) {
+        if (dealerScore >= 17) {
+            if (dealerScore > 21 || (dealerScore < playerScore)) {
                 gameResult("win");
-            } else if (dealerScore > 21) {
-                gameResult("win");
-            } else if (dealerScore === playerScore) {
+                return;
+            } else if ((dealerScore === playerScore)) {
                 gameResult("draw");
-            } else {
+                return;
+            } else if (dealerScore > playerScore) {
                 gameResult("lose");
+                return;
             }
-        } else if (playerScore === dealerScore) {
-            gameResult("draw");
-        } else {
-            gameResult("lose")
+        }
+        while (dealerScore < 17) {
+            let cardJS = deck.pop();
+            let cardValue = cardJS['value'];
+            const card = createCard(cardJS['suit'], cardValue);
+            if (cardValue > 10) {
+                dealerScore += 10;
+            } else if (cardValue === 1) {
+                dealerScore += 11;
+                dealerAceCount++;
+            } else {
+                dealerScore += cardValue;
+            }
+
+            if (dealerScore > 21 && dealerAceCount > 0) {
+                dealerAceCount--;
+                dealerScore -= 10; 
+            }
+
+            card.setAttribute("class", "flippedDealer");   
+            dealerCount.textContent = `${dealerScore}`;           
+            dealerContainer.appendChild(card);
+
+            await delay(800);
+
+            if (dealerScore > 21 || (dealerScore >= 17 && dealerScore < playerScore)) {
+                gameResult("win");
+                return;
+            } else if ((dealerScore === playerScore) && (dealerScore >= 17)) {
+                gameResult("draw");
+                return;
+            } else if (dealerScore > playerScore) {
+                gameResult("lose");
+                return;
+            }
         }
     }
 
