@@ -48,6 +48,8 @@ window.addEventListener("DOMContentLoaded", () => {
     hitBtn.addEventListener("click", playerHit);
     standBtn.addEventListener("click", playerStand);
     dealBtn.addEventListener("click", validateBet);
+    resetBtn.addEventListener("click", resetGame);
+    
 
     // Dialog functionality
     dialogCloseBtn.addEventListener("click", closeDialog);
@@ -288,6 +290,30 @@ window.addEventListener("DOMContentLoaded", () => {
                 resolve("resolved");
             }, time)
         });
+    }
+
+    /** || Reset Functions */
+    // Reset the game to the initial state
+    function resetGame() {
+        if (gameActive) {
+            return;
+        }
+        playerMoney = 2500;
+        localStorage.setItem("playerMoney", playerMoney);
+        playerMoneyText.textContent = `${playerMoney}`;
+
+        deck.length = 0;
+        playerScore = 0;
+        playerAceCount = 0;
+        dealerScore = 0;
+        dealerAceCount = 0;
+        playerAction = false;
+        playerCount.textContent = `${playerScore}`;
+        dealerCount.textContent = `${dealerScore}`;
+        playerContainer.replaceChildren();
+        dealerContainer.replaceChildren();
+        betMoneyText.textContent = "10";
+        betInput.value = "";
     }
 
 });

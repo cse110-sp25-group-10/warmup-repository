@@ -226,6 +226,12 @@ button {
     max-height: var(--button-height);
     background: linear-gradient(var(--gradient-angle), var(--deal-color-0), var(--deal-color-1));
 }
+#resetBtn {
+    margin: 0 var(--slight-margin);
+    max-width: var(--button-width);
+    max-height: var(--button-height);
+    background: linear-gradient(var(--gradient-angle), var(--subtract-color-0), var(--subtract-color-1));
+}
 
 .uiBtn {
     background-color: var(--ui-color-0);
