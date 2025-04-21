@@ -1,6 +1,10 @@
 # Documentation
 Our website can be found at [https://cse110-sp25-group-10.github.io/warmup-repository/](https://cse110-sp25-group-10.github.io/warmup-repository/)
 
+SWOT Analysis: [WarmupExercise.pdf](WarmupExercise.pdf)
+
+YouTube Video: [https://youtu.be/SBE-g-rFYIg](https://youtu.be/SBE-g-rFYIg)
+
 ## Nav
 [HTML Structure](#html-structure)
 
