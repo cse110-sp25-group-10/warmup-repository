@@ -18,6 +18,7 @@ card-component > img {
 }
 
 card-component > img[class="cardBack"] {
+    z-index: 2;
     position: absolute;
     height: auto;
     backface-visibility: hidden;
