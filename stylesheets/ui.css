@@ -292,6 +292,9 @@ button {
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .uiBtn {
@@ -303,6 +306,14 @@ button {
 button:disabled {
     background-color: grey;
     opacity: 0.5; 
+}
+
+button:not(:disabled):hover {
+    box-shadow: var(--button-shadow-x-offset) var(--button-shadow-x-offset) var(--button-shadow-blur-value) var(--button-shadow-scaling);
+}
+
+button:not(:disabled):active {
+    transform: translateY(var(--button-hover-height));
 }
 
 /** || Mobile layout */
