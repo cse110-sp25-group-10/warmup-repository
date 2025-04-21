@@ -145,10 +145,11 @@ bet-options-bar {
     display: flex;
     gap: var(--button-gap);
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
     max-width: 100%;
+    overflow-x: auto;
 }
 
 .bet-group {
@@ -364,6 +365,10 @@ button:not(:disabled):active {
 dialog {
     width: 70%;
     height: 70%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     justify-self: center;
     align-self: center;
     background-color:  rgb(0,0,0,0);
@@ -387,6 +392,7 @@ dialog > nav > h2 {
     font-size: 2rem;
     color: var(--font-color-0);
     text-align: center;
+    margin: 0 auto
 }
 
 dialog > nav > button {
