@@ -199,9 +199,13 @@ window.addEventListener("DOMContentLoaded", () => {
                 betInput.value = 1;
                 currentBet = 1;
             } else {
+                let audio = new Audio("assets/sounds/clickSfx.wav#t=0.1");
+                audio.volume = 0.3;
+                audio.play();
                 currentBet = newBet;
                 betInput.value = currentBet;
                 betNotification.classList.remove("show");
+                audio = null;
             }
             updateBetButtons();
         }
@@ -254,6 +258,7 @@ window.addEventListener("DOMContentLoaded", () => {
     async function initGame() {
         if (!gameActive) {
             gameActive = true;
+            await delay(100);
             // Disable betting buttons and deal button during game
             updateDealButton();
             updateBetButtons();
@@ -409,17 +414,21 @@ window.addEventListener("DOMContentLoaded", () => {
         playerAction = false
         updateGameButtons();
 
-
+        let resultSfx = new Audio("assets/sounds/loseSfx.wav");;
         if (result === "win") {
+            resultSfx = new Audio("assets/sounds/winSfx.wav");
             gameResultText.textContent = "You Win!";
             playerMoney += currentBet;
         } else if (result === "lose") {
+            resultSfx = new Audio("assets/sounds/loseSfx.wav");
             gameResultText.textContent = "You Lose!";
             playerMoney -= currentBet;
         } else {
+            resultSfx = new Audio("assets/sounds/loseSfx.wav");
             gameResultText.textContent = "Draw!";
         }
         if (playerMoney === 0) {
+            resultSfx = new Audio("assets/sounds/loseSfx.wav");
             gameResultText.textContent = "Game Over";
             playerMoney = 2500;
             localStorage.setItem("playerMoney", playerMoney);
@@ -428,9 +437,12 @@ window.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("playerMoney", playerMoney);
             playerMoneyText.textContent = `${playerMoney}`;
         }
+        resultSfx.volume = 0.3;
+        resultSfx.play();
         menuDialog.showModal();
         updateBetButtons(); // Enable betting buttons after game ends
         updateDealButton(); // Enable dealing button again after game end
+        resultSfx = null;
     }
 
     function closeDialog() {
