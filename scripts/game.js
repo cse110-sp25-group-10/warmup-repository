@@ -347,7 +347,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 return;
             }
         }
-        while (dealerScore < 17) {
+        
+        while (dealerScore < 17 && dealerScore <= playerScore) {
             let cardJS = deck.pop();
             let cardValue = cardJS['value'];
             const card = createCard(cardJS['suit'], cardValue);
