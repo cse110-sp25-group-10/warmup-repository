@@ -376,9 +376,9 @@ window.addEventListener("DOMContentLoaded", () => {
                 dealerScore -= 10; 
             }
 
-                let drawCardSFX = new Audio("assets/sounds/drawCard.mp3#t=0.3");
-                drawCardSFX.volume = 0.2;
-                drawCardSFX.play();
+            let drawCardSFX = new Audio("assets/sounds/drawCard.mp3#t=0.3");
+            drawCardSFX.volume = 0.2;
+            drawCardSFX.play();
 
             card.setAttribute("class", "flippedDealer");   
             dealerCount.textContent = `${dealerScore}`;           
