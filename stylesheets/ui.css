@@ -309,8 +309,11 @@ button:disabled {
 }
 
 button:not(:disabled):hover {
-    transform: translateY(var(--button-hover-height));
     box-shadow: var(--button-shadow-x-offset) var(--button-shadow-x-offset) var(--button-shadow-blur-value) var(--button-shadow-scaling);
+}
+
+button:not(:disabled):active {
+    transform: translateY(var(--button-hover-height));
 }
 
 /** || Mobile layout */
